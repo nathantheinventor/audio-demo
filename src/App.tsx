@@ -15,6 +15,7 @@ class App extends React.Component {
     if (this.started) {
       return;
     }
+    this.started = true;
     const canvas = document.getElementById('canvas') as HTMLCanvasElement;
     const offset = canvas.getBoundingClientRect();
     canvas.width = offset.width;
