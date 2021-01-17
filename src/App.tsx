@@ -6,10 +6,12 @@ class App extends React.Component {
   ctx: CanvasRenderingContext2D;
   width = 0;
   height = 512;
-  audioCtx = new window.AudioContext();
-  analyser = this.audioCtx.createAnalyser();
   bufferLength: number = 0;
   started = false;
+  // @ts-ignore
+  audioCtx: AudioContext;
+  // @ts-ignore
+  analyser: AnalyserNode;
 
   onClick = async () => {
     if (this.started) {
@@ -23,6 +25,8 @@ class App extends React.Component {
     canvas.height = this.height;
     this.ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
+    this.audioCtx = new window.AudioContext();
+    this.analyser = this.audioCtx.createAnalyser();
     this.analyser.fftSize = 8192;
     this.bufferLength = this.analyser.frequencyBinCount;
 
